@@ -1,0 +1,28 @@
+[project]
+name = "project-1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "email-validator>=2.3.0",
+    "fastapi>=0.139.0",
+    "lancedb>=0.24.0",
+    "pwdlib[argon2]>=0.3.0",
+    "pydantic-settings>=2.14.2",
+    "python-multipart>=0.0.20",
+    "python-dotenv>=1.2.2",
+    "pytest>=8.0.0",
+    "sentence-transformers>=3.0.1",
+    "sqlalchemy>=2.0.51",
+    "pymysql>=1.1.1",
+    "uvicorn>=0.51.0",
+    "pyarrow>=25.0.0",
+    "numpy>=2.5.1",
+    "groq>=1.5.0",
+    "langchain-text-splitters>=1.1.2",
+    "pyjwt>=2.13.0",
+    "pymupdf>=1.28.0",
+    "streamlit>=1.59.1",
+    "requests>=2.34.2",
+]
