@@ -2,7 +2,6 @@
 
 # 📄 Enterprise AI Knowledge Assistant
 
-🚀 **Live Demo:** [https://enterprise-ai-knowledge-assistant.streamlit.app](https://enterprise-ai-knowledge-assistant-khin4pttryulgiprkyr9ub.streamlit.app/)
 
 **Upload your PDFs. Ask questions in plain English. Get answers with sources.**
 
