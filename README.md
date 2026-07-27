@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📄 AI Knowledge Assistant
+# 📄 Enterprise AI Knowledge Assistant
 
 🚀 **Live Demo:** [https://enterprise-ai-knowledge-assistant.streamlit.app](https://enterprise-ai-knowledge-assistant-khin4pttryulgiprkyr9ub.streamlit.app/)
 
