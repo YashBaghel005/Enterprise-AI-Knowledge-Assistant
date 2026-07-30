@@ -3,6 +3,7 @@ from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 
 from app.api.dependencies import get_current_user
+from app.core.logger import logger
 from app.db.dependencies import get_db
 from app.db.models.user import User
 from app.repositories.chat_message import (
@@ -34,12 +35,22 @@ async def chat(
     db: Session = Depends(get_db),
 ):
 
-    return await rag_service.answer(
-        db=db,
-        user_id=current_user.id,
-        question=request.question,
-        conversation_id=request.conversation_id,
-    )
+    try:
+        return await rag_service.answer(
+            db=db,
+            user_id=current_user.id,
+            question=request.question,
+            conversation_id=request.conversation_id,
+        )
+    except RuntimeError as exc:
+        logger.exception("Chat response generation failed")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=(
+                "The AI service is unavailable. Check the Groq API key and "
+                "your network or proxy connection, then try again."
+            ),
+        ) from exc
 
 
 @router.post("/stream")

@@ -7,6 +7,14 @@ BASE_URL = os.environ.get("BACKEND_URL", "http://127.0.0.1:8000")
 
 st.set_page_config(page_title="RAG Chatbot")
 
+
+def response_error(response: requests.Response) -> str:
+    """Return a useful API error without assuming every response is JSON."""
+    try:
+        return response.json().get("detail", response.text)
+    except ValueError:
+        return response.text or f"Request failed with status {response.status_code}."
+
 st.title("📄 RAG Chatbot")
 
 # ------------------------------------------------
@@ -47,7 +55,7 @@ def login(email, password):
         st.success("Logged in successfully")
         st.rerun()
     else:
-        st.error(response.json()["detail"])
+        st.error(response_error(response))
 
 
 def register(name, email, password):
@@ -59,7 +67,7 @@ def register(name, email, password):
     if response.status_code == 201:
         st.success("Registered successfully. Please login now.")
     else:
-        st.error(response.json()["detail"])
+        st.error(response_error(response))
 
 
 # ------------------------------------------------
@@ -135,7 +143,7 @@ if st.session_state.user["role"] == "admin":
         if upload_response.status_code == 201:
             st.success(f"Uploaded {uploaded_file.name} successfully")
         else:
-            st.error(upload_response.json()["detail"])
+            st.error(response_error(upload_response))
 
     st.subheader("Your Documents")
 
@@ -200,4 +208,4 @@ if question:
 
         st.session_state.messages.append({"role": "assistant", "content": answer})
     else:
-        st.error("Something went wrong. Please try again.")
+        st.error(response_error(chat_response))
