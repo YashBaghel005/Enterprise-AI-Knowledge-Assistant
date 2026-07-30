@@ -5,6 +5,7 @@ import uuid
 from fastapi import UploadFile
 from sqlalchemy.orm import Session
 
+from app.core.config import settings
 from app.core.logger import logger
 
 from app.db.models.documents import Document, UploadStatus
@@ -84,7 +85,7 @@ def upload_document(
     # Save File
     # ---------------------------------------------------
 
-    upload_dir = Path("uploads")
+    upload_dir = Path(settings.UPLOAD_DIR)
 
     extension = Path(file.filename).suffix
 

@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     EMBEDDING_MODEL: str = "BAAI/bge-small-en-v1.5"
     VECTOR_DB_PATH: str = "storage/vectordb"
     VECTOR_TABLE_NAME: str = "knowledge"
+    UPLOAD_DIR: str = "uploads"
 
     TOP_K: int = 5
     SIMILARITY_THRESHOLD: float = 0.5
